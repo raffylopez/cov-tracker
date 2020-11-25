@@ -1,0 +1,29 @@
+{
+   "name": "react-base",
+   "version": "1.0.0",
+   "description": "",
+   "main": "index.js",
+   "scripts": {
+      "test": "",
+      "dev": "webpack-dev-server --hot --watch"
+   },
+   "devDependencies": {
+      "path":"*",
+      "webpack":"*",
+      "webpack-dev-server":"*",
+      "babel-loader":"*",
+      "@babel/core":"*",
+      "@babel/preset-env":"*",
+      "@babel/preset-react":"*",
+      "css-loader":"*"
+   },
+   "dependencies": {
+      "react": "*",
+      "redux": "*",
+      "react-dom": "*",
+      "react-redux": "*"
+   },
+   "keywords": [],
+   "author": "",
+   "license": "ISC"
+}
