@@ -5,16 +5,19 @@
  * Distributed under terms of the MIT license.
  */
 const JSLoader = {
-   test: /\.(js|jsx)$/,
-   exclude: /node_modules/,
-   use: 'babel-loader'
+  test: /\.(js|jsx)$/,
+  exclude: /node_modules/,
+  use: [{
+    loader: 'babel-loader'
+  }]
 }
 
 const CSSLoaders = {
-   test: /\.(css)$/,
-   use: [{loader:'style-loader'}, {loader: 'css-loader'}]
+  test: /\.css$/,
+  use: ['style-loader', 'css-loader','postcss-loader']
 }
 
 module.exports = {
-   JSLoader, CSSLoaders
+  JSLoader,
+  CSSLoaders
 }

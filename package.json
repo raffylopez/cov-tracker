@@ -15,7 +15,10 @@
       "@babel/core":"*",
       "@babel/preset-env":"*",
       "@babel/preset-react":"*",
-      "css-loader":"*"
+      "css-loader":"*",
+      "postcss-loader":"*",
+      "postcss-nested":"*",
+      "prop-types":"*"
    },
    "dependencies": {
       "react": "*",

@@ -5,43 +5,4 @@
  * Distributed under terms of the MIT license.
  */
 
-body {
-	background: #ECECEC;
-	color: #323232;
-}
-
-:root {
-  margin: 0;
-  padding: 0;
-  font-size: 14px;
-}
-
-.foo {
-  font-family: "Raleway";
-  font-weight: 900;
-  font-size: 2rem;
-}
-
-.fancy-button {
-  background-color: rebeccapurple;
-  border: 1px none;
-  padding: 1rem;
-  border-radius: .5rem;
-  font-size: 1.2rem;
-  color: white;
-  opacity: 0.5;
-}
-
-.fancy-button:hover {
-  opacity: 1;
-}
-
-.fancy-button-outlined {
-  background-color: transparent;
-  border: 1px solid rebeccapurple;
-  padding: 1rem;
-  border-radius: .5rem;
-  font-size: 1.2rem;
-  color: rebeccapurple;
-}
 
