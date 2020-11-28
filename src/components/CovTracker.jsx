@@ -10,7 +10,7 @@ import fetchJsonFromUrl from "../util/fetchJsonFromUrl.js";
 import CountryList from "./CountryList";
 import StatsSheet from "./StatsSheet";
 import StatusDisplay from "./StatusDisplay";
-import "./CovTracker.css";
+import cx from "classnames";
 import {
   Line,
   LineChart,
@@ -21,6 +21,8 @@ import {
   Legend,
 } from "recharts";
 import getMonthsList from "../data/getMonthsList.js";
+
+import "./CovTracker.css";
 
 export default class CovTracker extends React.Component {
   constructor(props) {
@@ -33,6 +35,7 @@ export default class CovTracker extends React.Component {
       selectedCountry: {},
       countryData: { TotalConfirmed: 0 },
       inProgress: true,
+      isInitialAvailable: false,
       countries: [
         {
           Country: "",
@@ -109,13 +112,9 @@ export default class CovTracker extends React.Component {
       this.setState({
         countries: filteredCountries,
         selectedCountry: { name: "Philippines", slug: "philippines" },
+        isInitialAvailable: true,
       });
     }).then(() => this.onChangeHandler());
-    // fetchJsonFromUrl("https://api.covid19api.com/countries", (countries) => {
-    //   this.setState({
-    //     countries,
-    //   });
-    // }).then(this.onChangeHandler);
   }
 
   componentWillUnmount() {
@@ -136,49 +135,56 @@ export default class CovTracker extends React.Component {
   }
 
   render() {
-    const { data } = this.state;
+    const { data, isInitialAvailable } = this.state;
     return (
       <div>
         <StatusDisplay inProgress={this.state.inProgress} />
-        <h1>Realtime Cov Epidemiological Curve (Day One to Current)</h1>
-        <CountryList
-          onChangeHandler={this.onChangeHandler}
-          selectedCountry={this.state.selectedCountry}
-          countries={this.state.countries}
-        />
-        <StatsSheet
-          countryData={this.state.countryData}
-          selectedCountry={this.state.selectedCountry}
-        />
-        <div className="cov-chart-container">
-          <LineChart
-            width={this.state.width}
-            height={this.state.height}
-            data={data}
-            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis
-              dataKey="name"
-              tickFormatter={this.formatXAxis}
-              minTickGap={20}
-            />
-            <YAxis />
-            <Tooltip labelFormatter={this.tooltipLabelFormatter} />
-            <Legend />
-            <Line
-              dot={false}
-              type="monotone"
-              dataKey="Confirmed"
-              stroke="#8884d8"
-            />
-            <Line
-              dot={false}
-              type="monotone"
-              dataKey="Recovered"
-              stroke="#82ca9d"
-            />
-          </LineChart>
+        <div
+          className={cx({
+            covvisible: isInitialAvailable,
+            covhidden: !isInitialAvailable,
+          })}
+        >
+          <h1>Realtime Cov Epidemiological Curve (Day One to Current)</h1>
+          <CountryList
+            onChangeHandler={this.onChangeHandler}
+            selectedCountry={this.state.selectedCountry}
+            countries={this.state.countries}
+          />
+          <StatsSheet
+            countryData={this.state.countryData}
+            selectedCountry={this.state.selectedCountry}
+          />
+          <div className="cov-chart-container">
+            <LineChart
+              width={this.state.width}
+              height={this.state.height}
+              data={data}
+              margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis
+                dataKey="name"
+                tickFormatter={this.formatXAxis}
+                minTickGap={20}
+              />
+              <YAxis />
+              <Tooltip labelFormatter={this.tooltipLabelFormatter} />
+              <Legend />
+              <Line
+                dot={false}
+                type="monotone"
+                dataKey="Confirmed"
+                stroke="#8884d8"
+              />
+              <Line
+                dot={false}
+                type="monotone"
+                dataKey="Recovered"
+                stroke="#82ca9d"
+              />
+            </LineChart>
+          </div>
         </div>
       </div>
     );

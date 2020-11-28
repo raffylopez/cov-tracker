@@ -39,15 +39,13 @@
   border-radius: 0.5em;
   background-color: rebeccapurple;
   color: white;
+  height: 2rem;
 }
 
-.contain span{
-  /* background-color:blue; */
-  /* border: 1px dashed white; */
-}
 
 .hide {
   opacity: 0;
+  height:0;
   visibility: hidden;
   padding: 1.5rem 2rem 1.5rem 2rem;
   display:flex;
