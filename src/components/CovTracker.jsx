@@ -28,43 +28,25 @@ export default class CovTracker extends React.Component {
       width: window.innerWidth - 150,
       height: 400,
       data: [],
-      selectedCountry: { name: "Philippines", iso2: "PH" },
+      selectedCountry: { name: "Philippines", slug: "philippines" },
       stats: {},
       countryData: { TotalConfirmed: 0 },
       countries: [
         {
           Country: "Gathering data...",
-          ISO2: "",
+          Slug: "",
+          CountryCode: "",
         },
       ],
     };
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.updateDimensions = this.updateDimensions.bind(this);
     this.formatXAxis = this.formatXAxis.bind(this);
+    this.findPerCountryStats = this.findPerCountryStats.bind(this);
   }
 
-  onChangeHandler() {
-    const elemSelectCountry = document.getElementById("select-country");
-    const selectedCountry = {
-      name: elemSelectCountry.options[elemSelectCountry.selectedIndex].text,
-      iso2: elemSelectCountry.value,
-    };
-    console.log(selectedCountry);
-    this.setState({ selectedCountry: selectedCountry });
-
-    const cb = (data) => {
-      const countryData = data.Countries.find(
-        (element) => element.CountryCode == selectedCountry.iso2
-      );
-      this.setState({
-        countryData: countryData,
-      });
-    };
-    fetchJsonFromUrl("https://api.covid19api.com/summary", cb);
-    const countrySlug = this.state.countries.find(
-      (country) => country.ISO2 == selectedCountry.iso2
-    ).Slug;
-
+  findPerCountryStats() {
+    const { selectedCountry } = this.state;
     const dataComposerCallback = (jsonData) => {
       if (jsonData.length === 0) {
         const newData = [0, 0].map((e) => {
@@ -84,9 +66,29 @@ export default class CovTracker extends React.Component {
     };
 
     fetchJsonFromUrl(
-      `https://api.covid19api.com/total/dayone/country/${countrySlug}`,
+      `https://api.covid19api.com/total/dayone/country/${selectedCountry.slug}`,
       dataComposerCallback
     );
+  }
+
+  onChangeHandler() {
+    console.log("Foo");
+    const elemSelectCountry = document.getElementById("select-country");
+
+    const selectedCountry = {
+      name: elemSelectCountry.options[elemSelectCountry.selectedIndex].text,
+      slug: elemSelectCountry.value, // dropdown element value is country slug
+    };
+    console.log(selectedCountry);
+    this.setState({ selectedCountry: selectedCountry });
+
+    const countryData = this.state.countries.find(
+      (element) => element.Slug == selectedCountry.slug
+    );
+    this.setState({
+      countryData: countryData,
+    });
+    this.findPerCountryStats(selectedCountry);
   }
 
   updateDimensions() {
@@ -97,19 +99,19 @@ export default class CovTracker extends React.Component {
   componentDidMount() {
     window.addEventListener("resize", this.updateDimensions);
 
-    // fetchJsonFromUrl("https://api.covid19api.com/summary", (dataAsJson) => {
-    //    const filteredCountries = dataAsJson.Countries.filter(element=>{
-    //       return element.TotalConfirmed != 0 && element.TotalRecovered !=0
-    //    });
+    fetchJsonFromUrl("https://api.covid19api.com/summary", (dataAsJson) => {
+      const filteredCountries = dataAsJson.Countries.filter((element) => {
+        return element.TotalConfirmed != 0 && element.TotalRecovered != 0;
+      });
+      this.setState({
+        countries: filteredCountries,
+      });
+    }).then(this.findPerCountryStats);
+    // fetchJsonFromUrl("https://api.covid19api.com/countries", (countries) => {
     //   this.setState({
-    //      countries: filteredCountries,
+    //     countries,
     //   });
     // }).then(this.onChangeHandler);
-    fetchJsonFromUrl("https://api.covid19api.com/countries", (countries) => {
-      this.setState({
-        countries,
-      });
-    }).then(this.onChangeHandler);
   }
 
   componentWillUnmount() {
