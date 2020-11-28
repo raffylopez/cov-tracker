@@ -19,6 +19,9 @@ const fetchJsonFromUrl = (url, callback, cached = false)=> {
     result=>{
       hit = true;
       countryCache.concat(result);
+      if(result.Message) {
+        throw new Error("Endpoint unreachable")
+      }
       callback(result);
     }
   ).catch(error=>{ console.log("Uh oh", error) })

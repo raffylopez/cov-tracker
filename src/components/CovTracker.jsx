@@ -9,6 +9,7 @@ import React from "react";
 import fetchJsonFromUrl from "../util/fetchJsonFromUrl.js";
 import CountryList from "./CountryList";
 import StatsSheet from "./StatsSheet";
+import StatusDisplay from "./StatusDisplay";
 import "./CovTracker.css";
 import {
   Line,
@@ -31,9 +32,10 @@ export default class CovTracker extends React.Component {
       stats: {},
       selectedCountry: {},
       countryData: { TotalConfirmed: 0 },
+      inProgress: true,
       countries: [
         {
-          Country: "Gathering data...",
+          Country: "",
           Slug: "",
           CountryCode: "",
         },
@@ -62,7 +64,7 @@ export default class CovTracker extends React.Component {
           Recovered: e.Recovered,
         };
       });
-      this.setState({ data: newData });
+      this.setState({ data: newData, inProgress: false });
     };
 
     // console.log("FUNC", selectedCountry);
@@ -87,6 +89,7 @@ export default class CovTracker extends React.Component {
     this.setState({
       countryData: countryData,
       selectedCountry: selectedCountry,
+      inProgress: true,
     });
     this.findPerCountryStats(selectedCountry);
   }
@@ -136,6 +139,7 @@ export default class CovTracker extends React.Component {
     const { data } = this.state;
     return (
       <div>
+        <StatusDisplay inProgress={this.state.inProgress} />
         <h1>Realtime Cov Epidemiological Curve (Day One to Current)</h1>
         <CountryList
           onChangeHandler={this.onChangeHandler}

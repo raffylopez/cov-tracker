@@ -13,7 +13,6 @@ import './StatsSheet.css'
 export default class StatsSheet extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
   }
 
   componentDidMount() {}
