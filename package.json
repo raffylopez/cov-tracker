@@ -15,6 +15,7 @@
       "@babel/core":"*",
       "@babel/preset-env":"*",
       "@babel/preset-react":"*",
+      "@babel/plugin-proposal-class-properties":"*",
       "css-loader":"*",
       "style-loader":"*",
       "postcss-loader":"*",

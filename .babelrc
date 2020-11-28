@@ -1,4 +1,7 @@
 {
   "presets": ["@babel/preset-env", "@babel/preset-react"],
-  "plugins": ["recharts"]
+  "plugins": [
+    "recharts",
+    ["@babel/plugin-proposal-class-properties", { "loose": true }]
+  ]
 }

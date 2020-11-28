@@ -10,16 +10,8 @@ import fetchJsonFromUrl from "../util/fetchJsonFromUrl.js";
 import CountryList from "./CountryList";
 import StatsSheet from "./StatsSheet";
 import StatusDisplay from "./StatusDisplay";
+import ChartDisplay from "./ChartDisplay";
 import cx from "classnames";
-import {
-  Line,
-  LineChart,
-  CartesianGrid,
-  XAxis,
-  YAxis,
-  Tooltip,
-  Legend,
-} from "recharts";
 import getMonthsList from "../data/getMonthsList.js";
 
 import "./CovTracker.css";
@@ -47,12 +39,10 @@ export default class CovTracker extends React.Component {
     };
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.updateDimensions = this.updateDimensions.bind(this);
-    this.formatXAxis = this.formatXAxis.bind(this);
     this.findPerCountryStats = this.findPerCountryStats.bind(this);
   }
 
   findPerCountryStats(selectedCountry) {
-    // const { selectedCountry } = this.state;
     const dataComposerCallback = (jsonData) => {
       if (jsonData.length === 0) {
         const newData = [0, 0].map((e) => {
@@ -71,7 +61,6 @@ export default class CovTracker extends React.Component {
       this.setState({ data: newData, inProgress: false });
     };
 
-    // console.log("FUNC", selectedCountry);
     fetchJsonFromUrl(
       `https://api.covid19api.com/total/dayone/country/${selectedCountry.slug}`,
       dataComposerCallback
@@ -85,7 +74,6 @@ export default class CovTracker extends React.Component {
       name: elemSelectCountry.options[elemSelectCountry.selectedIndex].text,
       slug: elemSelectCountry.value, // dropdown element value is country slug
     };
-    // console.log("ONC", selectedCountry);
 
     const countryData = this.state.countries.find(
       (element) => element.Slug == selectedCountry.slug
@@ -99,7 +87,6 @@ export default class CovTracker extends React.Component {
   }
 
   updateDimensions() {
-    // this.setState({ width: window.innerWidth, height: window.innerHeight });
     this.setState({ width: window.innerWidth - 150 });
   }
 
@@ -128,19 +115,6 @@ export default class CovTracker extends React.Component {
     window.removeEventListener("resize", this.updateDimensions);
   }
 
-  formatXAxis(value) {
-    const dateVal = new Date(value);
-    return getMonthsList()[dateVal.getMonth()] + " " + dateVal.getDate();
-  }
-
-  tooltipLabelFormatter(label) {
-    const date = new Date(label);
-    return `${
-      getMonthsList()[date.getMonth()]
-    } ${date.getDate()}, ${date.getFullYear()}
-    `;
-  }
-
   render() {
     const {
       data,
@@ -150,6 +124,8 @@ export default class CovTracker extends React.Component {
       countryData,
       isInitialAvailable,
       statusMessage,
+      width,
+      height,
     } = this.state;
     return (
       <div>
@@ -160,7 +136,7 @@ export default class CovTracker extends React.Component {
             covhidden: !isInitialAvailable,
           })}
         >
-          <h1>Realtime Cov Epidemiological Curve (Day One to Current)</h1>
+          <h1>CoV Infection Curve Per Country</h1>
           <CountryList
             onChangeHandler={this.onChangeHandler}
             selectedCountry={selectedCountry}
@@ -171,36 +147,7 @@ export default class CovTracker extends React.Component {
             selectedCountry={selectedCountry}
             inProgress={inProgress}
           />
-          <div className="cov-chart-container">
-            <LineChart
-              width={this.state.width}
-              height={this.state.height}
-              data={data}
-              margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-            >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis
-                dataKey="name"
-                tickFormatter={this.formatXAxis}
-                minTickGap={20}
-              />
-              <YAxis />
-              <Tooltip labelFormatter={this.tooltipLabelFormatter} />
-              <Legend />
-              <Line
-                dot={false}
-                type="monotone"
-                dataKey="Confirmed"
-                stroke="#8884d8"
-              />
-              <Line
-                dot={false}
-                type="monotone"
-                dataKey="Recovered"
-                stroke="#82ca9d"
-              />
-            </LineChart>
-          </div>
+          <ChartDisplay data={data} width={width} height={height} />
         </div>
       </div>
     );
