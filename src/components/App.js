@@ -6,21 +6,13 @@
  */
 
 import React from "react";
-import FancyButton from "./FancyButton";
-import AnotherButton from "./AnotherButton";
-import Gists from "./Gists";
+import CovTracker from "./CovTracker.jsx";
 
 const App = (props) => {
   return (
-    <div className="foo">
-      <p>Hello React!</p>
-      <p>
-        <FancyButton label="Click Me" className="fancy-button" />
-      </p>
-      <p>
-        <FancyButton label="Click Here" className="outlined" />
-      </p>
-    <Gists/>
+    <div>
+    <CovTracker/>
+
     </div>
   );
 };

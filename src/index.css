@@ -4,11 +4,15 @@
  *
  * Distributed under terms of the MIT license.
  */
-
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;900&display=swap');
 body {
   padding: 2rem;
   background: #ECECEC;
   color: #323232;
+  font-family: "Libre Franklin";
+  font-weight: 400;
+  font-size: 1rem;
 }
 
 :root {
@@ -18,7 +22,34 @@ body {
 }
 
 .foo {
-  font-family: "Raleway";
-  font-weight: 900;
-  font-size: 1rem;
+  font-weight: 800;
+  font-size: 1.4rem;
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s ease-in;
+}
+
+.onesec {
+  background-color: yellow;
+}
+.display-enter {
+  opacity: 0;
+}
+
+.display-enter-active {
+  transition: all 350ms;
+  opacity: 1;
+}
+
+.display-exit {
+  opacity: 1;
+}
+
+.display-exit-active {
+  transition: all 350ms;
+
+  opacity: 0;
 }

@@ -1,0 +1,29 @@
+/*
+ * StatsSheet.css
+ * Copyright (C) 2020 volare
+ *
+ * Distributed under terms of the MIT license.
+ */
+
+.stats-sheet {
+	background: white;
+  border-radius: 0.5em;
+  margin: 1rem 0rem 1rem 0rem;
+  padding: 2rem 2rem 1.5rem 2rem;
+
+}
+
+.border-underline {
+  border-bottom: 1px solid #DDD;
+}
+
+.stat-title {
+  font-size: 3rem;
+  font-weight: 900;
+}
+
+.stat-sheet p,label,span {
+  font-size: 1.2rem;
+  font-family: "Libre Franklin";
+  font-weight: 400;
+}
