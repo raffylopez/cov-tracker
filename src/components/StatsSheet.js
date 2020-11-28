@@ -9,6 +9,7 @@ import React from "react";
 import commafy from "commafy";
 import getMonthsList from "../data/getMonthsList.js";
 import './StatsSheet.css'
+import cx from "classnames";
 
 export default class StatsSheet extends React.Component {
   constructor(props) {
@@ -18,6 +19,8 @@ export default class StatsSheet extends React.Component {
   componentDidMount() {}
 
   render() {
+    const {inProgress} = this.props;
+
     const {
       TotalConfirmed,
       TotalRecovered
@@ -28,6 +31,7 @@ export default class StatsSheet extends React.Component {
 
     const date = new Date();
     return (
+      <div>
       <div className="stats-sheet">
       <h4 className="border-underline">
       Latest as of {`${getMonthsList()[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`}
@@ -44,6 +48,7 @@ export default class StatsSheet extends React.Component {
       <p>
       <label>Total Mortality: </label> <span>{}</span>
       </p>
+      </div>
       </div>
     );
   }

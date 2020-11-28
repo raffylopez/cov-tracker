@@ -9,14 +9,16 @@ const JSLoader = {
   exclude: /node_modules/,
   use: [{
     loader: 'babel-loader'
-  }]
+  }],
+  query: {plugins:['recharts']}
 }
 
 const CSSLoaders = {
   test: /\.css$/,
-  use: ['style-loader', 'css-loader', {
-    loader: 'postcss-loader'
-  }]
+    use: ['style-loader', 'css-loader',{loader:'postcss-loader', options: { 
+      plugins: ()=>[require('autoprefixer')()]
+
+    } }]
 }
 
 module.exports = {

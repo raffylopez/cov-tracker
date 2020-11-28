@@ -8,12 +8,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;900&display=swap');
 
 body {
-  padding: 2rem;
+  padding: 0rem;
+  margin: 1.5rem;
   background: #ECECEC;
   color: #323232;
   font-family: "Libre Franklin";
   font-weight: 400;
   font-size: 1rem;
+
 }
 
 :root {

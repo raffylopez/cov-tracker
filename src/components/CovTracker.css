@@ -16,11 +16,11 @@
 .covhidden {
   opacity: 0;
   visibility: hidden;
-  transition: all 2s;
+  transition: all 2s ease-in;
 }
 
 .covvisible {
   opacity: 1;
   visibility: visible;
-  transition: all 2s;
+  transition: all 2s ease-out;
 }

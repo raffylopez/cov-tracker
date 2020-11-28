@@ -28,6 +28,7 @@ export default class CovTracker extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      statusMessage: "Fetching...",
       width: window.innerWidth - 150,
       height: 400,
       data: [],
@@ -114,7 +115,13 @@ export default class CovTracker extends React.Component {
         selectedCountry: { name: "Philippines", slug: "philippines" },
         isInitialAvailable: true,
       });
-    }).then(() => this.onChangeHandler());
+    })
+      .then(() => this.onChangeHandler())
+      .catch((error) => {
+        this.setState({
+          statusMessage: "Unable to reach endpoint at this time",
+        });
+      });
   }
 
   componentWillUnmount() {
@@ -135,10 +142,18 @@ export default class CovTracker extends React.Component {
   }
 
   render() {
-    const { data, isInitialAvailable } = this.state;
+    const {
+      data,
+      inProgress,
+      countries,
+      selectedCountry,
+      countryData,
+      isInitialAvailable,
+      statusMessage,
+    } = this.state;
     return (
       <div>
-        <StatusDisplay inProgress={this.state.inProgress} />
+        <StatusDisplay inProgress={inProgress} statusMessage={statusMessage} />
         <div
           className={cx({
             covvisible: isInitialAvailable,
@@ -148,12 +163,13 @@ export default class CovTracker extends React.Component {
           <h1>Realtime Cov Epidemiological Curve (Day One to Current)</h1>
           <CountryList
             onChangeHandler={this.onChangeHandler}
-            selectedCountry={this.state.selectedCountry}
-            countries={this.state.countries}
+            selectedCountry={selectedCountry}
+            countries={countries}
           />
           <StatsSheet
-            countryData={this.state.countryData}
-            selectedCountry={this.state.selectedCountry}
+            countryData={countryData}
+            selectedCountry={selectedCountry}
+            inProgress={inProgress}
           />
           <div className="cov-chart-container">
             <LineChart

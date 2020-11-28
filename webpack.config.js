@@ -15,7 +15,9 @@ module.exports = {
     filename: "bundle.js"
   },
   devServer: {
-    contentBase: path.resolve(__dirname, "dist/public")
+    contentBase: path.resolve(__dirname, "dist/public"),
+    compress:true,
+    disableHostCheck: true
   },
   module: {
     rules: [

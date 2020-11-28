@@ -20,13 +20,13 @@ const fetchJsonFromUrl = (url, callback, cached = false)=> {
       hit = true;
       countryCache.concat(result);
       if(result.Message) {
-        console.lgo("MESSAGE", result.Message)
+        console.log("MESSAGE", result.Message)
         throw new Error("Endpoint unreachable")
       } else {
         callback(result);
       }
     }
-  ).catch(error=>{ console.log("Uh oh", error) })
+  ).catch(error=>{ console.log("Uh oh", error)})
 }
 
 export default fetchJsonFromUrl;

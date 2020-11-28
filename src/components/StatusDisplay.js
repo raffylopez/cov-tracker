@@ -15,13 +15,14 @@ export default class StatusDisplay extends React.Component {
   }
 
   render() {
+    const { statusMessage } = this.props;
     const {
       inProgress
     } = this.props;
     return (
       <div className="contain">
       <div className={cx({display: inProgress, hide: !inProgress })}>
-      <span>Fetching...</span>
+      <span>{statusMessage}</span>
       </div>
       </div>
     );
