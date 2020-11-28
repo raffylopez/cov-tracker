@@ -60,7 +60,6 @@ export default class CovTracker extends React.Component {
         countryData: countryData,
       });
     };
-
     fetchJsonFromUrl("https://api.covid19api.com/summary", cb);
     const countrySlug = this.state.countries.find(
       (country) => country.ISO2 == selectedCountry.iso2
@@ -98,6 +97,14 @@ export default class CovTracker extends React.Component {
   componentDidMount() {
     window.addEventListener("resize", this.updateDimensions);
 
+    // fetchJsonFromUrl("https://api.covid19api.com/summary", (dataAsJson) => {
+    //    const filteredCountries = dataAsJson.Countries.filter(element=>{
+    //       return element.TotalConfirmed != 0 && element.TotalRecovered !=0
+    //    });
+    //   this.setState({
+    //      countries: filteredCountries,
+    //   });
+    // }).then(this.onChangeHandler);
     fetchJsonFromUrl("https://api.covid19api.com/countries", (countries) => {
       this.setState({
         countries,
