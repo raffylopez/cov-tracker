@@ -17,7 +17,6 @@ export default class CountryList extends React.Component {
   }
 
   render() {
-    console.log(this.props.selectedCountry)
     const {
       countries
     } = this.props;

@@ -28,8 +28,8 @@ export default class CovTracker extends React.Component {
       width: window.innerWidth - 150,
       height: 400,
       data: [],
-      selectedCountry: { name: "Philippines", slug: "philippines" },
       stats: {},
+      selectedCountry: {},
       countryData: { TotalConfirmed: 0 },
       countries: [
         {
@@ -45,8 +45,8 @@ export default class CovTracker extends React.Component {
     this.findPerCountryStats = this.findPerCountryStats.bind(this);
   }
 
-  findPerCountryStats() {
-    const { selectedCountry } = this.state;
+  findPerCountryStats(selectedCountry) {
+    // const { selectedCountry } = this.state;
     const dataComposerCallback = (jsonData) => {
       if (jsonData.length === 0) {
         const newData = [0, 0].map((e) => {
@@ -65,6 +65,7 @@ export default class CovTracker extends React.Component {
       this.setState({ data: newData });
     };
 
+    // console.log("FUNC", selectedCountry);
     fetchJsonFromUrl(
       `https://api.covid19api.com/total/dayone/country/${selectedCountry.slug}`,
       dataComposerCallback
@@ -72,21 +73,20 @@ export default class CovTracker extends React.Component {
   }
 
   onChangeHandler() {
-    console.log("Foo");
     const elemSelectCountry = document.getElementById("select-country");
 
     const selectedCountry = {
       name: elemSelectCountry.options[elemSelectCountry.selectedIndex].text,
       slug: elemSelectCountry.value, // dropdown element value is country slug
     };
-    console.log(selectedCountry);
-    this.setState({ selectedCountry: selectedCountry });
+    // console.log("ONC", selectedCountry);
 
     const countryData = this.state.countries.find(
       (element) => element.Slug == selectedCountry.slug
     );
     this.setState({
       countryData: countryData,
+      selectedCountry: selectedCountry,
     });
     this.findPerCountryStats(selectedCountry);
   }
@@ -105,8 +105,9 @@ export default class CovTracker extends React.Component {
       });
       this.setState({
         countries: filteredCountries,
+        selectedCountry: { name: "Philippines", slug: "philippines" },
       });
-    }).then(this.findPerCountryStats);
+    }).then(() => this.onChangeHandler());
     // fetchJsonFromUrl("https://api.covid19api.com/countries", (countries) => {
     //   this.setState({
     //     countries,

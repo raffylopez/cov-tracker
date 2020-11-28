@@ -31,7 +31,7 @@ export default class StatsSheet extends React.Component {
     return (
       <div className="stats-sheet">
       <h4 className="border-underline">
-      As of {getMonthsList()[date.getMonth()]} {date.getFullYear()}
+      Latest as of {`${getMonthsList()[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`}
       </h4>
       <h1 className="stat-title">
       {this.props.selectedCountry.name}
