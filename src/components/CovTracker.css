@@ -17,3 +17,15 @@
   visibility: visible;
   transition: all 2s ease-out;
 }
+
+.pageTitle {
+  color: #323232;
+  font-size: 2rem;
+  /* text-align: right; */
+  margin: 0.5rem 0rem 0.8rem 0rem;
+}
+.pageTitle span {
+  font-size: 2rem;
+  font-weight: 900;
+  color: rebeccapurple;
+}
