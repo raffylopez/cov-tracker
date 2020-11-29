@@ -1,0 +1,62 @@
+/*
+ * Loader.css
+ * Copyright (C) 2020 volare
+ *
+ * Distributed under terms of the MIT license.
+ */
+
+.status_loader {
+  height: 1.2rem;
+  width: 1.2rem;
+  float: right;
+}
+
+.status_loader_visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+.status_loader svg {
+    animation: 2s linear infinite svg_animation;
+    max-width: 100px;
+}
+
+@keyframes svg_animation {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg)
+  }
+}
+
+.status_loader circle {
+  animation: 1.4s ease-in-out infinite both circle_animation;
+  display: block;
+  fill: transparent;
+  stroke: #323232;
+  stroke-linecap: round;
+  stroke-dasharray: 283;
+  stroke-dashoffset: 280;
+  stroke-width: 10px;
+  transform-origin: 50% 50%;
+}
+
+@keyframes circle_animation {
+  0%,
+  25% {
+    stroke-dashoffset: 280;
+    transform: rotate(0);
+  }
+
+  50%,
+  75% {
+    stroke-dashoffset: 75;
+    transform: rotate(45deg);
+  }
+
+  100% {
+    stroke-dashoffset: 280;
+    transform: rotate(360deg);
+  }
+}

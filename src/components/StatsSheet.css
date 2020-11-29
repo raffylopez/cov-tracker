@@ -12,8 +12,10 @@
   padding: 2rem 2rem 1.5rem 2rem;
 }
 
-.border-underline {
+.stats_sheet_subtitle {
+  font-size: 1.2rem;
   border-bottom: 1px solid #DDD;
+  padding-bottom: 0.5rem;
 }
 
 .stat-title {

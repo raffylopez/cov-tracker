@@ -8,8 +8,9 @@
 import React from "react";
 import commafy from "commafy";
 import getMonthsList from "../data/getMonthsList.js";
-import './StatsSheet.css'
+import Loader from "./Loader";
 import cx from "classnames";
+import "./StatsSheet.css";
 
 export default class StatsSheet extends React.Component {
   constructor(props) {
@@ -19,36 +20,37 @@ export default class StatsSheet extends React.Component {
   componentDidMount() {}
 
   render() {
-    const {inProgress} = this.props;
+    const { inProgress } = this.props;
 
-    const {
-      TotalConfirmed,
-      TotalRecovered
-    } = this.props.countryData || "n/a";
+    const { TotalConfirmed, TotalRecovered } = this.props.countryData || "n/a";
 
-    const totalConfirmed = TotalConfirmed || "-"
-    const totalRecovered = TotalRecovered || "-"
+    const totalConfirmed = TotalConfirmed || "-";
+    const totalRecovered = TotalRecovered || "-";
 
     const date = new Date();
     return (
       <div>
-      <div className="stats-sheet">
-      <h4 className="border-underline">
-      Latest as of {`${getMonthsList()[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`}
-      </h4>
-      <h1 className="stat-title">
-      {this.props.selectedCountry.name}
-      </h1>
-      <p>
-      <label>Total Confirmed Cases:</label> <span>{commafy(totalConfirmed)}</span>
-      </p>
-      <p>
-      <label>Total Recovered: </label> <span>{commafy(totalRecovered)}</span>
-      </p>
-      <p>
-      <label>Total Mortality: </label> <span>{}</span>
-      </p>
-      </div>
+        <div className="stats-sheet">
+          <Loader inProgress={inProgress} />
+          <h4 className="stats_sheet_subtitle">
+            Latest as of{" "}
+            {`${
+              getMonthsList()[date.getMonth()]
+            } ${date.getDate()}, ${date.getFullYear()}`}
+          </h4>
+          <h1 className="stat-title">{this.props.selectedCountry.name}</h1>
+          <p>
+            <label>Total Confirmed Cases:</label>{" "}
+            <span>{commafy(totalConfirmed)}</span>
+          </p>
+          <p>
+            <label>Total Recovered: </label>{" "}
+            <span>{commafy(totalRecovered)}</span>
+          </p>
+          <p>
+            <label>Total Mortality: </label> <span>{}</span>
+          </p>
+        </div>
       </div>
     );
   }

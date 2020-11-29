@@ -58,3 +58,15 @@ body {
 
   opacity: 0;
 }
+
+.am_visible {
+  transition: all 2s;
+  opacity: 1;
+  visibility: visible;
+}
+
+.am_invisible {
+  transition: all 2s;
+  visibility: hidden;
+}
+
