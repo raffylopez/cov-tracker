@@ -9,7 +9,9 @@
       "dev": "webpack --mode=development",
       "predevserver": "npm run clean && npm run dev",
       "devserver": "webpack-dev-server --hot --watch",
-      "prod": "webpack --mode=production"
+      "prod": "webpack --mode=production",
+      "prepublish": "npm run clean && npm run prod",
+      "publish": "git add . -A && git commit -m 'Build-`date +'%d%m%Y%H%M%S'` for Production' && git push origin develop"
    },
    "devDependencies": {
       "path":"*",
