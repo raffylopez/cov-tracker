@@ -135,7 +135,10 @@ export default class CovTracker extends React.Component {
     } = this.state;
     return (
       <div>
-        <StatusDisplay inProgress={inProgress} statusMessage={statusMessage} />
+        <StatusDisplay
+          inProgress={!isInitialAvailable}
+          statusMessage={statusMessage}
+        />
         <div
           className={cx({
             covvisible: isInitialAvailable,
