@@ -11,10 +11,11 @@ module.exports = {
   context: __dirname,
   entry: "./src/index.js",
   output: {
-    path: path.resolve(__dirname, "dist/public/js"),
-    filename: "bundle.js",
+    path: path.resolve(__dirname, "dist/public"),
+    filename: "main.js",
   },
   devServer: {
+    hot: true,
     contentBase: path.resolve(__dirname, "dist/public"),
     compress: true,
     disableHostCheck: true,

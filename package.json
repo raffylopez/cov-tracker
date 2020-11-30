@@ -5,7 +5,10 @@
    "main": "index.js",
    "scripts": {
       "test": "",
-      "dev": "webpack-dev-server --hot --watch",
+      "clean": "rm -rf ./dist && mkdir ./dist && cp -r src/public ./dist",
+      "dev": "webpack --mode=development",
+      "predevserver": "npm run clean && npm run dev",
+      "devserver": "webpack-dev-server --hot --watch",
       "prod": "webpack --mode=production"
    },
    "devDependencies": {
