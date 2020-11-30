@@ -13,6 +13,7 @@ import StatusDisplay from "./StatusDisplay";
 import ChartDisplay from "./ChartDisplay";
 import cx from "classnames";
 import getMonthsList from "../data/getMonthsList.js";
+import { formatIsoDate } from "../logic/date-utils.js";
 
 import "./CovTracker.css";
 
@@ -29,6 +30,7 @@ export default class CovTracker extends React.Component {
       countryData: { TotalConfirmed: 0 },
       inProgress: true,
       isInitialAvailable: false,
+      latestDate: "",
       countries: [
         {
           Country: "",
@@ -58,7 +60,14 @@ export default class CovTracker extends React.Component {
           Recovered: e.Recovered,
         };
       });
-      this.setState({ data: newData, inProgress: false });
+      console.log(newData[newData.length - 1]);
+      this.setState({
+        latestDate: formatIsoDate(newData[newData.length - 1].name),
+        // filteredCountries[filteredCountries.length - 1].Date
+        selectedCountry: selectedCountry,
+        data: newData,
+        inProgress: false,
+      });
     };
 
     fetchJsonFromUrl(
@@ -83,11 +92,12 @@ export default class CovTracker extends React.Component {
     const countryData = this.state.countries.find(
       (element) => element.Slug == selectedCountry.slug
     );
-    this.setState({
-      countryData: countryData,
-      selectedCountry: selectedCountry,
-      inProgress: true,
-    });
+    setTimeout(() => {
+      this.setState({
+        countryData: countryData,
+        inProgress: true,
+      });
+    }, 0);
     this.findPerCountryStats(selectedCountry);
   }
 
@@ -102,7 +112,7 @@ export default class CovTracker extends React.Component {
       const filteredCountries = dataAsJson.Countries.filter((element) => {
         return element.TotalConfirmed != 0 && element.TotalRecovered != 0;
       });
-      this.setState({
+      const lastFormattedDate = this.setState({
         countries: filteredCountries,
         selectedCountry: { name: "Philippines", slug: "philippines" },
         isInitialAvailable: true,
@@ -132,6 +142,7 @@ export default class CovTracker extends React.Component {
       statusMessage,
       width,
       height,
+      latestDate,
     } = this.state;
     return (
       <div>
@@ -157,6 +168,7 @@ export default class CovTracker extends React.Component {
             countryData={countryData}
             selectedCountry={selectedCountry}
             inProgress={inProgress}
+            latestDate={latestDate}
           />
           <ChartDisplay data={data} width={width} height={height} />
         </div>

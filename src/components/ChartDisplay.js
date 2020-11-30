@@ -60,7 +60,7 @@ export default class ChartDisplay extends React.Component {
           <XAxis
             dataKey="name"
             tickFormatter={this.formatXAxis}
-            minTickGap={20}
+            minTickGap={10}
           />
           <YAxis tickFormatter={this.yAxisTickFormatter} />
           <Tooltip
