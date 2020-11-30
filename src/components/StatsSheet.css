@@ -22,6 +22,9 @@
 .stat-title {
   font-size: 3rem;
   font-weight: 900;
+  transition: all 0.5s ease-out;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
 }
 
 .stat-sheet p,label,span {
@@ -33,16 +36,16 @@
 .statsheet_hide {
   opacity: 0;
   visibility: hidden;
-  transition: all 0.25s;
-  -webkit-transition: all 0.5s;
-  -moz-transition: all 0.5s;
+  transition: all 0.5s ease-out;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
 }
 
 .statsheet_display {
   opacity: 1;
   visibility: visible;
-  transition: all 0.25s;
-  transition-delay: all 2s;
-  -webkit-transition: all 4s;
-  -moz-transition: all 4s;
+  transition: all 0.5s ease-in;
+  /* transition-delay: all 2s; */
+  -webkit-transition: all 0.5s ease-in;
+  -moz-transition: all 0.5s ease-in;
 }

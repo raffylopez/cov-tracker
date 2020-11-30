@@ -80,28 +80,19 @@ export default class MyList extends React.Component {
             }),
           ],
         });
-        /* force a delay to enact transition */
+        /* force a timeout to prevent jerky transitions */
         setTimeout(() => {
           this.setState({ loadStatus: false });
-        }, 350);
+        }, 500);
       });
   }
 
   handleDelete(deleteKey) {
     const { items } = this.state;
-    // const found = items.find((element) => element.id === deleteKey);
     const newItems = items.filter((element) => element.id != deleteKey);
     this.setState({
       items: newItems,
     });
-
-    // const { items } = this.state;
-    // console.log("Delete!", deleteKey);
-    // const newItems = [
-    //   ...items.slice(0, deleteKey),
-    //   ...items.slice(deleteKey + 1),
-    // ];
-    // this.setState({ items: newItems });
   }
 
   render() {
