@@ -16,7 +16,6 @@ export default class extends React.Component {
 
   render() {
     const { loadStatus } = this.props;
-    console.log(loadStatus);
     return (
       <div>
         <input className="mylist-textfield" id="mylist-input" type="text" />
