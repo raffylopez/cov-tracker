@@ -20,7 +20,7 @@ export default class StatsSheet extends React.Component {
   componentDidMount() {}
 
   render() {
-    const { inProgress } = this.props;
+    const { inProgress, latestDate } = this.props;
 
     const { TotalConfirmed, TotalRecovered } = this.props.countryData || "n/a";
 
@@ -29,15 +29,15 @@ export default class StatsSheet extends React.Component {
 
     const date = new Date();
     return (
-      <div>
-        <div className="stats-sheet">
+      <div className="statsheet">
+        <div
+          className={cx({
+            statsheet_hide: inProgress,
+            statsheet_display: !inProgress,
+          })}
+        >
           <Loader inProgress={inProgress} />
-          <h4 className="stats_sheet_subtitle">
-            Latest as of{" "}
-            {`${
-              getMonthsList()[date.getMonth()]
-            } ${date.getDate()}, ${date.getFullYear()}`}
-          </h4>
+          <h4 className="stats_sheet_subtitle">Latest as of {latestDate}</h4>
           <h1 className="stat-title">{this.props.selectedCountry.name}</h1>
           <p>
             <label>Total Confirmed Cases:</label>{" "}
