@@ -14,8 +14,6 @@ import ChartDisplay from "./ChartDisplay";
 import cx from "classnames";
 import getMonthsList from "../data/getMonthsList.js";
 import { formatIsoDate } from "../logic/date-utils.js";
-import SimpleTimer from "./SimpleTimer";
-import Hello from "./testdojo/Hello";
 
 import "./CovTracker.css";
 
@@ -147,8 +145,6 @@ export default class CovTracker extends React.Component {
     } = this.state;
     return (
       <div>
-        <Hello name="John" />
-        <SimpleTimer />
         <StatusDisplay
           inProgress={!isInitialAvailable}
           statusMessage={statusMessage}
