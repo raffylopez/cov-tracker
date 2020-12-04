@@ -162,7 +162,7 @@ export default class CovTracker extends React.PureComponent {
           })}
         >
           <h1 className={"pageTitle"}>
-            <span>Tracker: </span>CoV Infection Curve Per Country
+            <span>Covid19 Infection Curve</span> Per Country
           </h1>
           <CountryList
             onChangeHandler={this.onChangeHandler}
