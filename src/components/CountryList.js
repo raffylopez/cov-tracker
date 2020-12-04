@@ -9,7 +9,7 @@ import React from "react";
 import fetchJsonFromUrl from "../util/fetchJsonFromUrl";
 import "./CountryList.css";
 
-export default class CountryList extends React.Component {
+export default class CountryList extends React.PureComponent {
   constructor(props) {
     super(props);
   }

@@ -5,12 +5,14 @@
    "main": "index.js",
    "scripts": {
       "test": "",
-      "clean": "rm -rf ./dist && mkdir ./dist && cp -r src/public ./dist",
+      "clean": "rm -rf ./dist",
+      "premove-assets" : "npm run clean",
+      "move-assets": "mkdir ./dist && cp -r src/public ./dist",
       "dev": "webpack --mode=development",
-      "predevserver": "npm run clean && npm run dev",
+      "predevserver": "npm run clean && npm run move-assets && npm run dev",
       "devserver": "webpack-dev-server --hot --watch",
       "prod": "webpack --mode=production",
-      "prepublish": "npm run clean && npm run prod",
+      "prepublish": "npm run clean && npm run move-assets && npm run prod",
       "publish": "git add . -A && git commit -m 'Build-`date +'%d%m%Y%H%M%S'` for Production' && git push origin develop -f"
    },
    "devDependencies": {

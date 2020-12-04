@@ -17,7 +17,7 @@ import { formatIsoDate } from "../logic/date-utils.js";
 
 import "./CovTracker.css";
 
-export default class CovTracker extends React.Component {
+export default class CovTracker extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -54,19 +54,23 @@ export default class CovTracker extends React.Component {
         return;
       }
       const newData = jsonData.map((e, idx) => {
+        console.log(e);
         return {
           name: e.Date,
           Confirmed: e.Confirmed,
           Recovered: e.Recovered,
+          Mortality: e.Deaths
         };
       });
 
-      this.setState({
-        latestDate: formatIsoDate(newData[newData.length - 1].name),
-        selectedCountry: selectedCountry,
-        data: newData,
-        inProgress: false,
-      });
+      setTimeout(() => {
+        this.setState({
+          latestDate: formatIsoDate(newData[newData.length - 1].name),
+          selectedCountry: selectedCountry,
+          data: newData,
+          inProgress: false,
+        });
+      }, 500);
     };
 
     fetchJsonFromUrl(
@@ -91,6 +95,7 @@ export default class CovTracker extends React.Component {
     const countryData = this.state.countries.find(
       (element) => element.Slug == selectedCountry.slug
     );
+    console.log("ABC", countryData)
     setTimeout(() => {
       this.setState({
         countryData: countryData,
@@ -111,7 +116,8 @@ export default class CovTracker extends React.Component {
       const filteredCountries = dataAsJson.Countries.filter((element) => {
         return element.TotalConfirmed != 0 && element.TotalRecovered != 0;
       });
-      const lastFormattedDate = this.setState({
+      console.log(filteredCountries);
+      this.setState({
         countries: filteredCountries,
         selectedCountry: { name: "Philippines", slug: "philippines" },
         isInitialAvailable: true,

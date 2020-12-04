@@ -12,7 +12,7 @@ import Loader from "./Loader";
 import cx from "classnames";
 import "./StatsSheet.css";
 
-export default class StatsSheet extends React.Component {
+export default class StatsSheet extends React.PureComponent {
   constructor(props) {
     super(props);
   }
@@ -22,10 +22,11 @@ export default class StatsSheet extends React.Component {
   render() {
     const { inProgress, latestDate } = this.props;
 
-    const { TotalConfirmed, TotalRecovered } = this.props.countryData || "n/a";
+    const { TotalConfirmed, TotalRecovered, TotalDeaths } = this.props.countryData || "n/a";
 
     const totalConfirmed = TotalConfirmed || "-";
     const totalRecovered = TotalRecovered || "-";
+    const totalDeaths= TotalDeaths || "-";
 
     const date = new Date();
     return (
@@ -48,7 +49,8 @@ export default class StatsSheet extends React.Component {
             <span>{commafy(totalRecovered)}</span>
           </p>
           <p>
-            <label>Total Mortality: </label> <span>{}</span>
+            <label>Total Mortality: </label>
+            <span>{commafy(totalDeaths)}</span>
           </p>
         </div>
       </div>

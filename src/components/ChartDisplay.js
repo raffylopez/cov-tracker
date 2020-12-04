@@ -48,7 +48,9 @@ export default class ChartDisplay extends React.Component {
 
   render() {
     const { width, height, data } = this.props;
+    console.log(data);
     return (
+
       <div className="cov-chart-container">
         <LineChart
           width={width}
@@ -79,6 +81,12 @@ export default class ChartDisplay extends React.Component {
             type="monotone"
             dataKey="Recovered"
             stroke="#82ca9d"
+          />
+          <Line
+            dot={false}
+            type="monotone"
+            dataKey="Mortality"
+            stroke="Red"
           />
         </LineChart>
       </div>
