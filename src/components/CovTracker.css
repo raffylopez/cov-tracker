@@ -5,11 +5,32 @@
  * Distributed under terms of the MIT license.
  */
 
-.cov-chart-container {
-	background-color: white;
-	background: white;
-  border-radius: 0.5em;
-  margin: 1rem 0rem 1rem 0rem;
-  padding: 4em 1em 4em 1em ;
+
+.covhidden {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 2s ease-in;
+  -webkit-transition: all 2s ease-in;
+  -moz-transition: all 2s ease-in;
 }
 
+.covvisible {
+  opacity: 1;
+  visibility: visible;
+  transition: all 2s ease-out;
+  -webkit-transition: all 2s ease-out;
+  -moz-transition: all 2s ease-out;
+}
+
+.pageTitle {
+  color: #323232;
+  font-size: 2rem;
+  /* text-align: right; */
+  margin: 0.5rem 0rem 0.8rem 0rem;
+}
+.pageTitle span {
+  font-size: 2rem;
+  font-weight: 900;
+  color: rebeccapurple;
+
+}

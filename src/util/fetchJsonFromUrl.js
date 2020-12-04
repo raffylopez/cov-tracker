@@ -8,20 +8,24 @@
 const countryCache = [];
 var hit = false;
 
-const fetchJsonFromUrl = (url, callback, cached = false)=> {
+const fetchJsonFromUrl = (url, callback, cached = false) => {
   // if (hit) {
   //   console.log("cached");
   //   callback(countryCache);
   //   return;
   // }
 
-  return fetch(url).then(response=>response.json()).then(
-    result=>{
+  return fetch(url)
+    .then((response) => response.json())
+    .then((result) => {
       hit = true;
       countryCache.concat(result);
-      callback(result);
-    }
-  ).catch(error=>{ console.log("Uh oh", error) })
-}
+      if (result.Message) {
+        throw new Error("Endpoint unreachable");
+      } else {
+        callback(result);
+      }
+    });
+};
 
 export default fetchJsonFromUrl;

@@ -1,0 +1,69 @@
+/*
+ * StatusDisplay.css
+ * Copyright (C) 2020 volare
+ *
+ * Distributed under terms of the MIT license.
+ */
+
+.contain {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  display: flex;
+  flex-direction:column;
+  align-items:center;
+  justify-items:center;
+  justify-content: space-evenly;
+  align-content: space-evenly;
+}
+
+.display {
+  opacity: 1;
+  visibility:visible;
+  padding: 1.5rem 2rem 1.5rem 2rem;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-items:center;
+  justify-content: space-evenly;
+  align-content: space-evenly;
+  margin: 0px;
+  z-index: 99;
+  transition: all 0.75s;
+  -webkit-transition: all 0.75s;
+  -moz-transition: all 0.75s;
+  top: 0; left:0 ; right:0; bottom:0 ;
+	background: white;
+  border-radius: 0.5em;
+  background-color: rebeccapurple;
+  color: white;
+  height: 2rem;
+}
+
+
+.hide {
+  opacity: 0;
+  height:0;
+  visibility: hidden;
+  padding: 1.5rem 2rem 1.5rem 2rem;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-items:center;
+  justify-content: space-evenly;
+  align-content: space-evenly;
+  margin: 0px;
+  z-index: 99;
+  transition: all 0.75s;
+  -webkit-transition: all 0.75s;
+  -moz-transition: all 0.75s;
+  top: 0; left:0 ; right:0; bottom:0 ;
+	background: white;
+  border-radius: 0.5em;
+  background-color: rebeccapurple;
+  color: white;
+}

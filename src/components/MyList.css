@@ -16,15 +16,15 @@
   margin: 0 0.25rem 0 0.25rem;
   text-transform:uppercase;
   font-size: 0.7rem;
-    transition: all 1s ease-in;
-    -moz-transition: all 1s ease-in; /* Firefox 4 */
-    -webkit-transition: all 1s ease-in; /* Safari 和 Chrome */
-    -o-transition: all 1s ease-in; /* Opera */
+  transition: all 1s ease-in;
+    /* -moz-transition: all 1s ease-in; /* Firefox 4 */ */
+    /* -webkit-transition: all 1s ease-in; /* Safari 和 Chrome */ */
+    /* -o-transition: all 1s ease-in; /* Opera */ */
 }
 
 .btn-yellow {
   background-color: yellow;
-  color: black;
+  color: #323232;
   visibility: visible;
   opacity: 1;
 }

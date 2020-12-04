@@ -6,11 +6,15 @@
  */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap');
+
 body {
-  padding: 2rem;
+  padding: 0rem;
+  margin: 1.5rem;
   background: #ECECEC;
   color: #323232;
-  font-family: "Libre Franklin";
+  /* font-family: "Libre Franklin"; */
+  font-family: "Inter";
   font-weight: 400;
   font-size: 1rem;
 }
@@ -19,17 +23,16 @@ body {
   margin: 0;
   padding: 0;
   font-size: 14px;
+  color: #323232;
 }
 
-.foo {
-  font-weight: 800;
-  font-size: 1.4rem;
-}
 
 .hidden {
   visibility: hidden;
   opacity: 0;
   transition: all 0.3s ease-in;
+  -webkit-transition: all 0.3s ease-in;
+  -moz-transition: all 0.3s ease-in;
 }
 
 .onesec {
@@ -41,6 +44,8 @@ body {
 
 .display-enter-active {
   transition: all 350ms;
+  -webkit-transition: all 350ms;
+  -moz-transition: all 350ms;
   opacity: 1;
 }
 
@@ -50,6 +55,24 @@ body {
 
 .display-exit-active {
   transition: all 350ms;
+  -webkit-transition: all 350ms;
+  -moz-transition: all 350ms;
 
   opacity: 0;
 }
+
+.am_visible {
+  transition: all 2s;
+  -webkit-transition: all 2s;
+  -moz-transition: all 2s;
+  opacity: 1;
+  visibility: visible;
+}
+
+.am_invisible {
+  transition: all 2s;
+  -webkit-transition: all 2s;
+  -moz-transition: all 2s;
+  visibility: hidden;
+}
+

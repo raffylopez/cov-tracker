@@ -5,7 +5,15 @@
    "main": "index.js",
    "scripts": {
       "test": "",
-      "dev": "webpack-dev-server --hot --watch"
+      "clean": "rm -rf ./dist",
+      "premove-assets" : "npm run clean",
+      "move-assets": "mkdir ./dist && cp -r src/public ./dist",
+      "dev": "webpack --mode=development",
+      "predevserver": "npm run clean && npm run move-assets && npm run dev",
+      "devserver": "webpack-dev-server --hot --watch",
+      "prod": "webpack --mode=production",
+      "prepublish": "npm run clean && npm run move-assets && npm run prod",
+      "publish": "git add . -A && git commit -m 'Build-`date +'%d%m%Y%H%M%S'` for Production' && git push origin develop -f"
    },
    "devDependencies": {
       "path":"*",
@@ -15,13 +23,15 @@
       "@babel/core":"*",
       "@babel/preset-env":"*",
       "@babel/preset-react":"*",
+      "@babel/plugin-proposal-class-properties":"*",
       "css-loader":"*",
       "style-loader":"*",
       "postcss-loader":"*",
       "postcss-nested":"*",
       "prop-types":"*",
       "classnames":"*",
-      "react-transition-group":"*"
+      "react-transition-group":"*",
+      "webpack-cli":"*"
    },
    "dependencies": {
       "react": "*",

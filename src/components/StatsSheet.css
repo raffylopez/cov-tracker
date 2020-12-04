@@ -5,25 +5,47 @@
  * Distributed under terms of the MIT license.
  */
 
-.stats-sheet {
+
+.statsheet {
 	background: white;
   border-radius: 0.5em;
   margin: 1rem 0rem 1rem 0rem;
-  padding: 2rem 2rem 1.5rem 2rem;
-
+  padding: 1.7rem 2rem 1.2rem 2rem;
 }
 
-.border-underline {
+.stats_sheet_subtitle {
+  font-size: 1.2rem;
   border-bottom: 1px solid #DDD;
+  padding-bottom: 0.5rem;
 }
 
 .stat-title {
   font-size: 3rem;
   font-weight: 900;
+  transition: all 0.5s ease-out;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
 }
 
 .stat-sheet p,label,span {
   font-size: 1.2rem;
-  font-family: "Libre Franklin";
+  font-family: "Inter";
   font-weight: 400;
+}
+
+.statsheet_hide {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s ease-out;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+}
+
+.statsheet_display {
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.5s ease-in;
+  /* transition-delay: all 2s; */
+  -webkit-transition: all 0.5s ease-in;
+  -moz-transition: all 0.5s ease-in;
 }

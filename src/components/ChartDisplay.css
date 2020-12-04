@@ -1,0 +1,14 @@
+/*
+ * ChartDisplay.css
+ * Copyright (C) 2020 volare
+ *
+ * Distributed under terms of the MIT license.
+ */
+
+.cov-chart-container {
+	background-color: white;
+	background: white;
+  border-radius: 0.5em;
+  margin: 1rem 0rem 1rem 0rem;
+  padding: 4em 1em 4em 1em ;
+}
