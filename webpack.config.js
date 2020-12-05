@@ -5,7 +5,6 @@
  * Distributed under terms of the MIT license.
  */
 
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 const loaders = require("./loaders.js");
 const path = require("path");
 var webpack = require("webpack");
@@ -25,12 +24,13 @@ module.exports = {
    },
    module: {
       rules: [loaders.JSLoader, loaders.CSSLoaders],
-   },
-   plugins: [
-		new webpack.DllPlugin({
-			path: path.join(__dirname, "dist", "[name]-manifest.json"),
-			name: "[name]_[fullhash]"
-		}),
-      // new HardSourceWebpacklugin(),
-   ]
+   }
+   // ,
+   // plugins: [
+	// 	new webpack.DllPlugin({
+	// 		path: path.join(__dirname, "dist", "[name]-manifest.json"),
+	// 		name: "[name]_[fullhash]"
+	// 	}),
+   //    // new HardSourceWebpacklugin(),
+   // ]
 };
