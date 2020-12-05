@@ -15,7 +15,7 @@ module.exports = {
    entry: "./src/index.js",
    output: {
       path: path.resolve(__dirname, "dist/public"),
-      filename: "main.js",
+      filename: "main.bundle.js",
    },
    devServer: {
       hot: true,
