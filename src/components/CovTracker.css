@@ -28,9 +28,17 @@
   /* text-align: right; */
   margin: 0.5rem 0rem 0.8rem 0rem;
 }
-.pageTitle span {
+.pageTitle span.fragment0 {
   font-size: 2rem;
   font-weight: 900;
   color: rebeccapurple;
-
+  letter-spacing: -0.05rem;
 }
+
+.pageTitle span.fragment1 {
+  font-size: 2rem;
+  font-weight:900;
+  color: #444;
+  letter-spacing: -0.05rem;
+}
+

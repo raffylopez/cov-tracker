@@ -17,6 +17,7 @@
    },
    "devDependencies": {
       "path":"*",
+      "hard-source-webpack-plugin":"*",
       "webpack":"*",
       "webpack-dev-server":"*",
       "babel-loader":"*",

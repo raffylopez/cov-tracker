@@ -7,7 +7,7 @@
 
 const formatIsoDate = (isoDate) => {
   const dateVal = new Date(isoDate);
-  return `${dateVal.getMonth()}/${dateVal.getDate()}/${dateVal.getFullYear()} GMT ${getTimezoneOffset()}`;
+  return `${dateVal.getMonth() + 1}/${dateVal.getDate()}/${dateVal.getFullYear()} GMT${getTimezoneOffset()}`;
 }
 
 const timezoneGeo = Intl.DateTimeFormat().resolvedOptions().timeZone;
