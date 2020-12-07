@@ -48,7 +48,6 @@ export default class ChartDisplay extends React.Component {
 
   render() {
     const { width, height, data } = this.props;
-    console.log(data);
     return (
 
       <div className="cov-chart-container">

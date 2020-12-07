@@ -54,7 +54,6 @@ export default class CovTracker extends React.PureComponent {
         return;
       }
       const newData = jsonData.map((e, idx) => {
-        console.log(e);
         return {
           name: e.Date,
           Confirmed: e.Confirmed,
@@ -162,7 +161,7 @@ export default class CovTracker extends React.PureComponent {
           })}
         >
           <h1 className={"pageTitle"}>
-            <span>Tracker: </span>CoV Infection Curve Per Country
+            <span className='fragment0'>COVID19 Infection Rate</span>&nbsp;<span className='fragment1'>Worldwide</span>
           </h1>
           <CountryList
             onChangeHandler={this.onChangeHandler}
