@@ -54,7 +54,6 @@ export default class CovTracker extends React.PureComponent {
         return;
       }
       const newData = jsonData.map((e, idx) => {
-        console.log(e);
         return {
           name: e.Date,
           Confirmed: e.Confirmed,
