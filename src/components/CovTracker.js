@@ -94,7 +94,6 @@ export default class CovTracker extends React.PureComponent {
     const countryData = this.state.countries.find(
       (element) => element.Slug == selectedCountry.slug
     );
-    console.log("ABC", countryData)
     setTimeout(() => {
       this.setState({
         countryData: countryData,
@@ -115,7 +114,6 @@ export default class CovTracker extends React.PureComponent {
       const filteredCountries = dataAsJson.Countries.filter((element) => {
         return element.TotalConfirmed != 0 && element.TotalRecovered != 0;
       });
-      console.log(filteredCountries);
       this.setState({
         countries: filteredCountries,
         selectedCountry: { name: "Philippines", slug: "philippines" },
