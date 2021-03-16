@@ -6,7 +6,7 @@
    "scripts": {
       "test": "",
       "clean": "rm -rf ./dist",
-      "premove-assets" : "npm run clean",
+      "premove-assets" : "npm install && npm run clean",
       "move-assets": "mkdir ./dist && cp -r src/public ./dist",
       "dev": "webpack --mode=development",
       "predevserver": "npm run clean && npm run move-assets && npm run dev",
